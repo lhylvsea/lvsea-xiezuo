@@ -10,11 +10,11 @@
   },
   "resource_bytes": {
     "references": 5194,
-    "scripts": 22434,
+    "scripts": 22578,
     "evals": 2955,
-    "reports": 24320
+    "reports": 25055
   },
-  "total_measured_bytes": 61281,
+  "total_measured_bytes": 62160,
   "files": [
     {
       "path": "references/feishu-export.md",
@@ -38,7 +38,7 @@
     },
     {
       "path": "scripts/check_package.py",
-      "bytes": 3798,
+      "bytes": 3942,
       "on_demand": false
     },
     {
@@ -73,12 +73,12 @@
     },
     {
       "path": "reports/context-budget.json",
-      "bytes": 2138,
+      "bytes": 2455,
       "on_demand": true
     },
     {
       "path": "reports/creation-handoff.md",
-      "bytes": 2220,
+      "bytes": 2638,
       "on_demand": true
     },
     {

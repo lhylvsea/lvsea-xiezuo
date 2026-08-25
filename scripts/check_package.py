@@ -38,7 +38,7 @@ def main() -> int:
     interface_text = (ROOT / "agents/interface.yaml").read_text(encoding="utf-8") if (ROOT / "agents/interface.yaml").is_file() else ""
     if not skill_text.startswith("---\n") or "name: lvsea-xiezuo" not in skill_text:
         failures.append("SKILL.md frontmatter is missing or mismatched")
-    if manifest.get("name") != "lvsea-xiezuo" or manifest.get("version") != "0.1.0":
+    if manifest.get("name") != "lvsea-xiezuo" or not re.fullmatch(r"\d+\.\d+\.\d+", str(manifest.get("version", ""))):
         failures.append("manifest name/version mismatch")
     for marker in ("display_name:", "short_description:", "default_prompt:", "examples:"):
         if marker not in interface_text:

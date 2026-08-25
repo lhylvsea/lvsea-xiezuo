@@ -3,7 +3,7 @@ name: lvsea-xiezuo
 description: "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims."
 metadata:
   author: "海洋哥 / lhylvsea"
-  version: "0.1.0"
+  version: "0.1.1"
   upstream_inspiration: "https://x.com/weiyux2021/status/2091828459630960703"
 ---
 

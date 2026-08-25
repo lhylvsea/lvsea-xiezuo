@@ -2,11 +2,11 @@
 
 ## Result
 
-- Skill: `lvsea-xiezuo` v0.1.0
+- Skill: `lvsea-xiezuo` v0.1.1
 - Owner: 海洋哥 / `lhylvsea`
 - Job: build a source-backed Xiaohongshu material radar and derivative-writing brief workflow
 - Local source: `work/lvsea-xiezuo`
-- Publication: pending local gates and governed GitHub release
+- Publication: public GitHub repository and v0.1.0 release completed; v0.1.1 is the documentation-corrected revision
 
 ## Reference skills studied
 
@@ -31,7 +31,8 @@
 
 ## Verification and limits
 
-- Package, trigger, Skill IR, context, release and clean-install evidence will be generated during the release gate.
+- Local package gate: PASS; 5 unit tests: PASS; trigger regression: 13/13 PASS; context budget: PASS.
+- `Test-SkillInstall.ps1` in an isolated Codex home: PASS; `npx skills` public discovery: PASS; clean install: PASS.
+- Public release evidence: [PR #1](https://github.com/lhylvsea/lvsea-xiezuo/pull/1) merged and [v0.1.0](https://github.com/lhylvsea/lvsea-xiezuo/releases/tag/v0.1.0) released. This v0.1.1 patch corrects this handoff text without overwriting the released version.
 - Real Xiaohongshu provider, real Feishu sync, human output quality and account performance are not verified in this package.
 - Deliberately excluded: credentials, private data, platform bypass, automatic public posting and unreviewed third-party code execution.
-
