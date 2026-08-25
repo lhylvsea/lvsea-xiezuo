@@ -1,0 +1,215 @@
+{
+  "ok": true,
+  "threshold": 0.6,
+  "description_concepts": [
+    "evidence_workflow",
+    "writing_action",
+    "xhs_material"
+  ],
+  "missing_description_concepts": [],
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "false_positive": 0,
+    "false_negative": 0,
+    "pass_rate": 1.0
+  },
+  "bucket_summary": {
+    "should_trigger": {
+      "total": 5,
+      "passed": 5
+    },
+    "should_not_trigger": {
+      "total": 4,
+      "passed": 4
+    },
+    "near_neighbor": {
+      "total": 2,
+      "passed": 2
+    },
+    "adversarial": {
+      "total": 2,
+      "passed": 2
+    }
+  },
+  "failures": [],
+  "results": {
+    "should_trigger": [
+      {
+        "prompt": "用我的关键词搜集小红书素材，按互动数据筛选后做评论区和二创价值分析。",
+        "family": "material-radar",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把这批公开笔记整理成素材库，输出核心矛盾、高赞评论和 5 个带来源的选题。",
+        "family": "evidence-cards",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "读取 JSON 导出，筛掉缺少指标的远端同步记录，再生成 30 个不同角度的写作简报。",
+        "family": "batch-repurpose",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把素材字段导出成飞书多维表 CSV，local_review 先不要同步。",
+        "family": "feishu-export",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。",
+        "family": "skill-workflow",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      }
+    ],
+    "should_not_trigger": [
+      {
+        "prompt": "只把这段话改成一篇小红书文案，不需要素材库和来源。",
+        "family": "one-off-rewrite",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "evidence_workflow",
+          "xhs_material"
+        ],
+        "negative_pattern": "不需要素材"
+      },
+      {
+        "prompt": "给我一个小红书标题，今天用一次就行。",
+        "family": "one-off-title",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "解释一下什么是小红书，不要分析任何素材。",
+        "family": "concept-explanation",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": "不要分析"
+      },
+      {
+        "prompt": "把这篇别人的笔记原样搬到我的账号，直接发出去。",
+        "family": "direct-repost",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.0,
+        "matched_concepts": [],
+        "negative_pattern": null
+      }
+    ],
+    "near_neighbor": [
+      {
+        "prompt": "分析我自己账号最近 10 篇笔记的数据，但不需要采集外部素材或生成二创。",
+        "family": "owned-account-analysis",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.667,
+        "matched_concepts": [
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "只生成一个飞书表格模板，不需要素材判断和写作简报。",
+        "family": "table-template-only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": "不需要素材"
+      }
+    ],
+    "adversarial": [
+      {
+        "prompt": "用自动化模板回答一次性选题问题，不要建立可复用素材库。",
+        "family": "automation-keyword-trap",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "xhs_material"
+        ],
+        "negative_pattern": "一次性"
+      },
+      {
+        "prompt": "我要 30 条内容，来源和数据都可以随便编。",
+        "family": "evidence-bypass",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "evidence_workflow"
+        ],
+        "negative_pattern": null
+      }
+    ]
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "ok": true,
+  "status": "pass",
+  "reason": "root SKILL.md is 6378 bytes within production budget",
+  "tier": "production",
+  "root_skill_bytes": 6378,
+  "root_budget_bytes": {
+    "root_warn": 14000,
+    "root_block": 20000
+  },
+  "resource_bytes": {
+    "references": 5194,
+    "scripts": 22434,
+    "evals": 2955,
+    "reports": 24320
+  },
+  "total_measured_bytes": 61281,
+  "files": [
+    {
+      "path": "references/feishu-export.md",
+      "bytes": 1073,
+      "on_demand": true
+    },
+    {
+      "path": "references/material-schema.md",
+      "bytes": 2267,
+      "on_demand": true
+    },
+    {
+      "path": "references/writing-and-evidence.md",
+      "bytes": 1854,
+      "on_demand": true
+    },
+    {
+      "path": "scripts/build_rewrite_brief.py",
+      "bytes": 4520,
+      "on_demand": false
+    },
+    {
+      "path": "scripts/check_package.py",
+      "bytes": 3798,
+      "on_demand": false
+    },
+    {
+      "path": "scripts/export_feishu_csv.py",
+      "bytes": 3447,
+      "on_demand": false
+    },
+    {
+      "path": "scripts/filter_materials.py",
+      "bytes": 2142,
+      "on_demand": false
+    },
+    {
+      "path": "scripts/material_lib.py",
+      "bytes": 6575,
+      "on_demand": false
+    },
+    {
+      "path": "scripts/validate_materials.py",
+      "bytes": 1952,
+      "on_demand": false
+    },
+    {
+      "path": "evals/trigger_cases.json",
+      "bytes": 2955,
+      "on_demand": false
+    },
+    {
+      "path": "reports/article-evidence.md",
+      "bytes": 1733,
+      "on_demand": true
+    },
+    {
+      "path": "reports/context-budget.json",
+      "bytes": 2138,
+      "on_demand": true
+    },
+    {
+      "path": "reports/creation-handoff.md",
+      "bytes": 2220,
+      "on_demand": true
+    },
+    {
+      "path": "reports/output-evidence.json",
+      "bytes": 462,
+      "on_demand": true
+    },
+    {
+      "path": "reports/portability.md",
+      "bytes": 1122,
+      "on_demand": true
+    },
+    {
+      "path": "reports/prior-art-research.md",
+      "bytes": 3360,
+      "on_demand": true
+    },
+    {
+      "path": "reports/skill-ir.json",
+      "bytes": 6979,
+      "on_demand": true
+    },
+    {
+      "path": "reports/trigger-eval.json",
+      "bytes": 6306,
+      "on_demand": true
+    }
+  ],
+  "missing_evidence": "context size does not prove output quality or runtime performance"
+}

@@ -1,0 +1,57 @@
+{
+  "name": "lvsea-xiezuo",
+  "version": "0.1.0",
+  "owner": "海洋哥 / lhylvsea",
+  "updated_at": "2026-08-25",
+  "review_due": "2026-11-25",
+  "status": "active",
+  "maturity_tier": "governed",
+  "lifecycle_stage": "library",
+  "context_budget_tier": "production",
+  "review_cadence": "quarterly",
+  "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703",
+  "intent": {
+    "job_to_be_done": "把小红书素材采集、互动门禁、评论分析、分类归档和证据驱动二创写作简报变成可复用 Skill。",
+    "target_users": ["中文内容创作者", "制造业知识账号", "个人副业与电商运营者", "需要本地可复盘素材库的 Agent 使用者"],
+    "inputs": ["keyword brief", "user-owned JSON/JSONL/CSV", "authorized provider output", "optional Feishu export target"],
+    "outputs": ["gated material dataset", "evidence cards", "rewrite brief", "Feishu-compatible CSV preview"],
+    "exclusions": ["one-off copy rewrite", "direct repost", "automatic XHS publishing", "unverified metrics", "unreviewed third-party scraping or API calls"]
+  },
+  "evidence": {
+    "article_source": "https://x.com/weiyux2021/status/2091828459630960703",
+    "article_state": "read via Jina Reader; attached public screenshots inspected",
+    "provider_runtime": "missing_evidence",
+    "feishu_sync": "missing_evidence",
+    "human_output_review": "missing_evidence",
+    "local_fixture_pipeline": "validated"
+  },
+  "risk": {
+    "output_risk": "medium",
+    "execution_risk": "medium",
+    "trust_boundary": "external-read-and-optional-write"
+  },
+  "permissions": {
+    "network": "authorized provider read-only by default; no hidden scraping",
+    "file_write": "explicit local output paths only",
+    "external_write": "off by default; Feishu or publishing requires current-turn authorization",
+    "secrets": "never read into public artifacts or reports"
+  },
+  "target_platforms": ["openai", "claude", "generic", "agent-skills-compatible"],
+  "factory_components": ["references", "scripts", "evals", "reports", "tests"],
+  "release_gates": [
+    "intent_capture",
+    "article_evidence_and_prior_art",
+    "material_schema",
+    "metric_gate_regression",
+    "trigger_regression",
+    "context_budget",
+    "skill_ir",
+    "portability_and_trust",
+    "secret_scan",
+    "rollback_boundary",
+    "evidence_bound_public_claims",
+    "feature_branch_only_publication",
+    "pull_request_and_release",
+    "npx_discovery_and_clean_install"
+  ]
+}
