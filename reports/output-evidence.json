@@ -1,0 +1,15 @@
+{
+  "provider": "missing_evidence",
+  "human_review": "missing_evidence",
+  "real_user_output": "missing_evidence",
+  "local_fixture": {
+    "status": "validated",
+    "source": "tests/fixtures/demo-materials.json",
+    "expected": {
+      "eligible": 2,
+      "local_review": 1,
+      "excluded": 1
+    }
+  },
+  "public_claim_boundary": "Do not claim Xiaohongshu or Feishu runtime connectivity, output quality, growth, or efficiency gains from this fixture."
+}

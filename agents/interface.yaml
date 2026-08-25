@@ -1,0 +1,53 @@
+interface:
+  display_name: "Lvsea 小红书素材雷达与二创写作"
+  short_description: "按来源和互动门禁整理小红书素材，提炼评论洞察并生成可审核二创简报"
+  default_prompt: "使用 $lvsea-xiezuo 作为小红书素材与二创写作入口。先锁定关键词、角度、排除项和目标数量，再按来源证据与互动门禁筛选素材，分离观察、推断和开放问题，生成带 source_basis 的二创简报；默认不发布、不直接同步飞书，provider 或人工证据缺失时明确写 missing_evidence。"
+  examples:
+    - "用关键词‘冷门生意’整理一批小红书素材，按默认门槛筛选并分析评论区。"
+    - "读取我的 JSON 导出，提炼核心矛盾、评论观点和二创价值，输出 5 个写作简报。"
+    - "把素材库导出成飞书多维表可导入的 CSV，local_review 记录不要同步。"
+    - "基于已有爆款素材生成 30 个不同角度的选题，不要逐句改写，也不要自动发布。"
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "openai"
+    - "claude"
+    - "generic"
+    - "agent-skills-compatible"
+  activation:
+    mode: "manual-or-description"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash-or-powershell"
+    runtime: "python-standard-library"
+  trust:
+    source_tier: "user-owned-or-public-read-only"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow only user-authorized provider output"
+    generated_public_claims: "evidence-bound"
+  permissions:
+    network: "provider read-only by default; external writes require explicit authorization"
+    file_write: "workspace outputs and explicit local export paths only"
+    subprocess: "local Python scripts only; no unreviewed installers or hooks"
+    external_write: "disabled by default"
+  degradation:
+    provider_missing: "accept user-owned JSON/JSONL/CSV import and mark provider evidence missing"
+    feishu_missing: "export UTF-8 CSV locally; do not claim remote sync"
+gates:
+  scaffold:
+    - "SKILL.md frontmatter and clear exclusions"
+    - "Chinese README with four real scenarios"
+    - "root-only discoverable SKILL.md"
+  production:
+    - "input/output contract"
+    - "material schema and deterministic scripts"
+    - "trigger regression cases"
+    - "unit smoke tests"
+    - "install and README verification"
+  governed:
+    - "source evidence and prior-art ledger"
+    - "secret scan and no credential files"
+    - "explicit provider and external-write boundaries"
+    - "feature branch, PR, versioned Release and clean install"
+

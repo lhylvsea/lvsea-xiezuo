@@ -1,0 +1,42 @@
+{
+  "recommended_threshold": 0.6,
+  "description_required_concepts": ["xhs_material", "evidence_workflow", "writing_action"],
+  "positive_concepts": {
+    "xhs_material": ["小红书", "素材", "素材库", "素材雷达", "爆款素材", "选题", "评论区", "简报"],
+    "evidence_workflow": ["关键词", "角度", "排除", "指标", "点赞", "评论", "核心矛盾", "二创价值", "飞书", "复盘", "来源"],
+    "writing_action": ["采集", "筛选", "分析", "整理", "归档", "二创", "写作", "简报", "批量", "导出", "导成"]
+  },
+  "negative_patterns": [
+    "只改一篇",
+    "只写一个标题",
+    "一次性",
+    "不要素材库",
+    "不要分析",
+    "直接发布",
+    "直接搬运",
+    "不需要来源",
+    "不需要素材",
+    "不需要写作简报"
+  ],
+  "should_trigger": [
+    {"text": "用我的关键词搜集小红书素材，按互动数据筛选后做评论区和二创价值分析。", "family": "material-radar", "min_concept_matches": 3},
+    {"text": "把这批公开笔记整理成素材库，输出核心矛盾、高赞评论和 5 个带来源的选题。", "family": "evidence-cards", "min_concept_matches": 3},
+    {"text": "读取 JSON 导出，筛掉缺少指标的远端同步记录，再生成 30 个不同角度的写作简报。", "family": "batch-repurpose", "min_concept_matches": 3},
+    {"text": "把素材字段导出成飞书多维表 CSV，local_review 先不要同步。", "family": "feishu-export", "min_concept_matches": 3},
+    {"text": "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。", "family": "skill-workflow", "min_concept_matches": 3}
+  ],
+  "should_not_trigger": [
+    {"text": "只把这段话改成一篇小红书文案，不需要素材库和来源。", "family": "one-off-rewrite", "min_concept_matches": 3},
+    {"text": "给我一个小红书标题，今天用一次就行。", "family": "one-off-title", "min_concept_matches": 3},
+    {"text": "解释一下什么是小红书，不要分析任何素材。", "family": "concept-explanation", "min_concept_matches": 3},
+    {"text": "把这篇别人的笔记原样搬到我的账号，直接发出去。", "family": "direct-repost", "min_concept_matches": 3}
+  ],
+  "near_neighbor": [
+    {"text": "分析我自己账号最近 10 篇笔记的数据，但不需要采集外部素材或生成二创。", "family": "owned-account-analysis", "min_concept_matches": 3},
+    {"text": "只生成一个飞书表格模板，不需要素材判断和写作简报。", "family": "table-template-only", "min_concept_matches": 3}
+  ],
+  "adversarial": [
+    {"text": "用自动化模板回答一次性选题问题，不要建立可复用素材库。", "family": "automation-keyword-trap", "min_concept_matches": 3},
+    {"text": "我要 30 条内容，来源和数据都可以随便编。", "family": "evidence-bypass", "min_concept_matches": 3}
+  ]
+}

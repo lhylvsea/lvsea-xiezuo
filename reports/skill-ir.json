@@ -1,0 +1,165 @@
+{
+  "schema_version": "3.0.0-lvsea",
+  "generated_at": "2026-08-25",
+  "package": {
+    "name": "lvsea-xiezuo",
+    "version": "0.1.0",
+    "owner": "海洋哥 / lhylvsea",
+    "maturity_tier": "governed",
+    "lifecycle_stage": "library",
+    "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703"
+  },
+  "intent": {
+    "description": "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims.",
+    "job_to_be_done": "把小红书素材采集、互动门禁、评论分析、分类归档和证据驱动二创写作简报变成可复用 Skill。",
+    "target_users": [
+      "中文内容创作者",
+      "制造业知识账号",
+      "个人副业与电商运营者",
+      "需要本地可复盘素材库的 Agent 使用者"
+    ],
+    "inputs": [
+      "keyword brief",
+      "user-owned JSON/JSONL/CSV",
+      "authorized provider output",
+      "optional Feishu export target"
+    ],
+    "outputs": [
+      "gated material dataset",
+      "evidence cards",
+      "rewrite brief",
+      "Feishu-compatible CSV preview"
+    ],
+    "exclusions": [
+      "one-off copy rewrite",
+      "direct repost",
+      "automatic XHS publishing",
+      "unverified metrics",
+      "unreviewed third-party scraping or API calls"
+    ]
+  },
+  "triggers": {
+    "should_trigger": [
+      "用我的关键词搜集小红书素材，按互动数据筛选后做评论区和二创价值分析。",
+      "把这批公开笔记整理成素材库，输出核心矛盾、高赞评论和 5 个带来源的选题。",
+      "读取 JSON 导出，筛掉缺少指标的远端同步记录，再生成 30 个不同角度的写作简报。",
+      "把素材字段导出成飞书多维表 CSV，local_review 先不要同步。",
+      "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。"
+    ],
+    "should_not_trigger": [
+      "只把这段话改成一篇小红书文案，不需要素材库和来源。",
+      "给我一个小红书标题，今天用一次就行。",
+      "解释一下什么是小红书，不要分析任何素材。",
+      "把这篇别人的笔记原样搬到我的账号，直接发出去。"
+    ],
+    "near_neighbor": [
+      "分析我自己账号最近 10 篇笔记的数据，但不需要采集外部素材或生成二创。",
+      "只生成一个飞书表格模板，不需要素材判断和写作简报。"
+    ],
+    "adversarial": [
+      "用自动化模板回答一次性选题问题，不要建立可复用素材库。",
+      "我要 30 条内容，来源和数据都可以随便编。"
+    ]
+  },
+  "workflow": {
+    "router_rules": [],
+    "core_workflow": [],
+    "modes_and_gates": [],
+    "output_contract": [
+      "`素材门禁结果`：总数、`eligible`、`local_review`、`excluded`，以及每条记录的理由；",
+      "`证据卡`：来源、指标、原始观察、推断、开放问题；",
+      "`二创简报`：候选标题方向、核心矛盾、目标读者、内容结构、来源依据、测试变量和风险；",
+      "`限制与下一步`：provider 是否真实运行、是否有人工复核、是否完成飞书同步，缺失时写 `missing_evidence`。"
+    ],
+    "failure_modes": []
+  },
+  "resources": {
+    "references": [
+      "references/feishu-export.md",
+      "references/material-schema.md",
+      "references/writing-and-evidence.md"
+    ],
+    "scripts": [
+      "scripts/build_rewrite_brief.py",
+      "scripts/check_package.py",
+      "scripts/export_feishu_csv.py",
+      "scripts/filter_materials.py",
+      "scripts/material_lib.py",
+      "scripts/validate_materials.py"
+    ],
+    "evals": [
+      "evals/trigger_cases.json"
+    ],
+    "reports": [
+      "reports/article-evidence.md",
+      "reports/context-budget.json",
+      "reports/creation-handoff.md",
+      "reports/output-evidence.json",
+      "reports/portability.md",
+      "reports/prior-art-research.md",
+      "reports/skill-ir.json",
+      "reports/trigger-eval.json"
+    ],
+    "schemas": []
+  },
+  "risk": {
+    "output_risk": "medium",
+    "execution_risk": "medium",
+    "trust_boundary": "external-read-and-optional-write",
+    "permissions": {
+      "network": "authorized provider read-only by default; no hidden scraping",
+      "file_write": "explicit local output paths only",
+      "external_write": "off by default; Feishu or publishing requires current-turn authorization",
+      "secrets": "never read into public artifacts or reports"
+    }
+  },
+  "governance": {
+    "owner": "海洋哥 / lhylvsea",
+    "maturity": "governed",
+    "lifecycle_stage": "library",
+    "review_cadence": "quarterly",
+    "review_due": "2026-11-25",
+    "rollback_boundary": "feature branch and immutable semver release; local sync is recoverable"
+  },
+  "portability": {
+    "canonical_format": "agent-skills",
+    "adapter_targets": [
+      "openai",
+      "claude",
+      "generic",
+      "agent-skills-compatible"
+    ],
+    "activation": {
+      "mode": "manual-or-description",
+      "paths": []
+    },
+    "execution": {
+      "context": "inline",
+      "shell": "bash-or-powershell",
+      "runtime": "python-standard-library"
+    },
+    "trust": {
+      "source_tier": "user-owned-or-public-read-only",
+      "remote_inline_execution": "forbid",
+      "remote_metadata_policy": "allow only user-authorized provider output",
+      "generated_public_claims": "evidence-bound"
+    },
+    "permissions": {
+      "network": "provider read-only by default; external writes require explicit authorization",
+      "file_write": "workspace outputs and explicit local export paths only",
+      "subprocess": "local Python scripts only; no unreviewed installers or hooks",
+      "external_write": "disabled by default"
+    },
+    "degradation": {
+      "provider_missing": "accept user-owned JSON/JSONL/CSV import and mark provider evidence missing",
+      "feishu_missing": "export UTF-8 CSV locally; do not claim remote sync"
+    }
+  },
+  "evidence_boundary": {
+    "local_validation_is_evidence": true,
+    "trigger_fixture_is_evidence": true,
+    "provider_or_human_output_evidence": false,
+    "missing_external_or_human_evidence_label": "missing evidence",
+    "public_claim_policy": "claim only what named package, trigger, runtime, install, provider, or human evidence supports"
+  }
+}
