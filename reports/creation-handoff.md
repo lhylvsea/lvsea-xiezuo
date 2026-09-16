@@ -37,9 +37,9 @@ This package is a downstream Xiaohongshu material specialist. The primary user e
 
 ## Verification and limits
 
-- Local package gate: PASS; 6 unit tests: PASS; trigger regression: 14/14 PASS; context budget: PASS; Skill IR regenerated with v0.1.2 outputs.
+- Local package gate: PASS; 6 unit tests: PASS; trigger regression: 16/16 PASS; context budget: PASS; Skill IR regenerated with v0.1.3 outputs.
 - The target-native `scripts/check_package.py` is the structural gate. The current `lvsea-zao-skill` `validate_skill.py` / `release_check.py` adapter is hard-coded to the name `lvsea-zao-skill`, so it reports a package-name mismatch for `lvsea-xiezuo`; that adapter result is not treated as a target-package failure.
-- `Test-SkillInstall.ps1` in an isolated Codex home, public discovery and clean install are run after the v0.1.2 release and recorded below.
-- Public release evidence for the prior baseline: [PR #1](https://github.com/lhylvsea/lvsea-xiezuo/pull/1) merged and [v0.1.0](https://github.com/lhylvsea/lvsea-xiezuo/releases/tag/v0.1.0) released; v0.1.1 was the documentation-corrected revision. v0.1.2 must be released separately.
+- `Test-SkillInstall.ps1` PASS for the global `lvsea-xiezuo` entry; direct discovery and `scripts/check_package.py` both passed.
+- Public release evidence: [PR #4](https://github.com/lhylvsea/lvsea-xiezuo/pull/4) merged and [v0.1.3](https://github.com/lhylvsea/lvsea-xiezuo/releases/tag/v0.1.3) released.
 - Real Xiaohongshu provider, real Feishu sync, human output quality and account performance are not verified in this package.
 - Deliberately excluded: credentials, private data, platform bypass, automatic public posting and unreviewed third-party code execution.
