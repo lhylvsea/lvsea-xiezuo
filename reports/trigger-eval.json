@@ -8,16 +8,16 @@
   ],
   "missing_description_concepts": [],
   "summary": {
-    "total": 13,
-    "passed": 13,
+    "total": 14,
+    "passed": 14,
     "false_positive": 0,
     "false_negative": 0,
     "pass_rate": 1.0
   },
   "bucket_summary": {
     "should_trigger": {
-      "total": 5,
-      "passed": 5
+      "total": 6,
+      "passed": 6
     },
     "should_not_trigger": {
       "total": 4,
@@ -94,6 +94,20 @@
       {
         "prompt": "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。",
         "family": "skill-workflow",
+        "expected_trigger": true,
+        "predicted_trigger": true,
+        "passed": true,
+        "score": 1.0,
+        "matched_concepts": [
+          "evidence_workflow",
+          "writing_action",
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "已筛选出小红书素材，补齐来源依据，生成可交给 $lvsea-writing 的写作接力包，先不要直接写正文。",
+        "family": "writing-handoff",
         "expected_trigger": true,
         "predicted_trigger": true,
         "passed": true,

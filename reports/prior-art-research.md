@@ -31,3 +31,17 @@ The results were treated as discovery signals, not proof of quality. Public sour
 
 The retained mechanisms are domain-neutral behaviors: preflight the source, keep the source basis, separate fact from inference, make missing evidence visible, and stop before external writes. The article's volumes and screenshots are treated as task-specific evidence and defaults, not global performance rules.
 
+## Incremental research: Zhiyu333 / lieflat-less-ai-tone
+
+On 2026-09-16, the public X status [2099746344466579566](https://x.com/Zhiyu333/status/2099746344466579566) was checked. Direct X access returned HTTP 403 in the current environment, so the status metadata and linked public article were read through a read-only public mirror/API path. The article points to [larashero3-dotcom/lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone), reviewed at commit `27d29232f10124db904ca9c0536d0b67cb3b2833` under its MIT license.
+
+The source repository reports a 629-article, 2.826-million-character, 95,551-sentence corpus, with 300 AI texts and 329 human texts. It reports 26 candidate features, 11 retained signals and 15 unsupported general rules. These are source-reported study results, not a universal detector or a quality truth. The repository also warns about denominator choice, model variation and false positives; its operating guidance emphasizes whitelist-only edits, information conservation and auditing a sample before trusting a new operator.
+
+| Decision | Applied to `lvsea-xiezuo` |
+| --- | --- |
+| `keep` | late-stage only, whitelist-style editing; preserve information and source attribution; treat statistical features as review signals |
+| `adapt` | expose a writing handoff after evidence/brief generation, so `$lvsea-writing` can perform the full upstream re-check and final Humanizer stage |
+| `reject` | copying the third-party Skill, corpus, scripts, thresholds or claims into this package; early “humanization” before task/structure/evidence |
+| `invent` | `scripts/build_writing_handoff.py` plus an explicit field map and a trigger boundary that keeps Xiaohongshu radar separate from general writing |
+
+The resulting architecture is intentionally two-stage: `lvsea-xiezuo` owns platform-specific material intelligence; [lvsea-writing](https://github.com/lhylvsea/lvsea-writing) owns general writing and the final editing gate. No real provider run, Feishu sync, generated article or human blind review is claimed by this research update.

@@ -23,7 +23,8 @@
     {"text": "把这批公开笔记整理成素材库，输出核心矛盾、高赞评论和 5 个带来源的选题。", "family": "evidence-cards", "min_concept_matches": 3},
     {"text": "读取 JSON 导出，筛掉缺少指标的远端同步记录，再生成 30 个不同角度的写作简报。", "family": "batch-repurpose", "min_concept_matches": 3},
     {"text": "把素材字段导出成飞书多维表 CSV，local_review 先不要同步。", "family": "feishu-export", "min_concept_matches": 3},
-    {"text": "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。", "family": "skill-workflow", "min_concept_matches": 3}
+    {"text": "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。", "family": "skill-workflow", "min_concept_matches": 3},
+    {"text": "已筛选出小红书素材，补齐来源依据，生成可交给 $lvsea-writing 的写作接力包，先不要直接写正文。", "family": "writing-handoff", "min_concept_matches": 3}
   ],
   "should_not_trigger": [
     {"text": "只把这段话改成一篇小红书文案，不需要素材库和来源。", "family": "one-off-rewrite", "min_concept_matches": 3},

@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_rewrite_brief import render_brief  # noqa: E402
+from build_writing_handoff import render_handoff  # noqa: E402
 from export_feishu_csv import export_rows  # noqa: E402
 from filter_materials import build_dataset  # noqa: E402
 from material_lib import load_items  # noqa: E402
@@ -54,6 +55,15 @@ class PipelineTests(unittest.TestCase):
         self.assertNotIn("demo-review-missing", brief)
         self.assertIn("missing_evidence", brief)
 
+    def test_writing_handoff_is_source_backed_and_stops_before_prose(self) -> None:
+        dataset = build_dataset(self.items, self.reference_time)
+        handoff = render_handoff(dataset["items"], count=3)
+        self.assertIn("lvsea-writing", handoff)
+        self.assertIn("source_basis", handoff)
+        self.assertIn("main_claim_candidate", handoff)
+        self.assertNotIn("demo-review-missing", handoff)
+        self.assertIn("不是成稿", handoff)
+
     def test_csv_roundtrip_is_utf8_and_has_headers(self) -> None:
         dataset = build_dataset(self.items, self.reference_time)
         rows, _ = export_rows(dataset["items"])
@@ -69,4 +79,3 @@ class PipelineTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

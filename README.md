@@ -10,6 +10,16 @@
 
 这里把截图中可复核的字段和门槛固化为规则，但没有把案例作者所述的数量或效率当成已验证效果。真实小红书 provider、飞书 API、账号权限、人工质量评审在本版本均标为 `missing_evidence`。
 
+## 与 lvsea-writing 的关系
+
+本 Skill 与 [lvsea-writing](https://github.com/lhylvsea/lvsea-writing) 是上下游关系，不是两个重复的通用写作 Skill：
+
+- `lvsea-xiezuo` 负责小红书素材的来源、指标门禁、评论证据、去重和二创方向，停止在“可审阅的写作输入”；
+- `lvsea-writing` 负责通用写作的任务契约、研究复核、主判断、结构、读者、作者声音、场景格式、初稿、终稿，以及最后一步去 AI 味；
+- 需要继续写正文时，先运行 `scripts/build_writing_handoff.py` 生成接力包，再交给 `$lvsea-writing`。不要把素材门禁和最终 Humanizer 塞进同一个入口。
+
+本次接力设计参考了 [Zhiyu333 的公开文章](https://x.com/Zhiyu333/status/2099746344466579566) 指向的 [lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone)。它只作为最后编辑阶段的研究参考：保留白名单式定点修改、信息守恒和样本审计；不复制其完整 Skill、研究数据或把报告中的统计特征当成普适阈值。详细字段映射见 [references/lvsea-writing-handoff.md](references/lvsea-writing-handoff.md)。
+
 ## 安装
 
 ### Codex / Agent Skills
@@ -48,12 +58,14 @@ python scripts/filter_materials.py tests/fixtures/demo-materials.json `
   --output work/gated.json
 python scripts/build_rewrite_brief.py work/gated.json `
   --output work/rewrite-brief.md --count 3
+python scripts/build_writing_handoff.py work/gated.json `
+  --output work/lvsea-writing-handoff.md --count 3
 python scripts/export_feishu_csv.py work/gated.json `
   --output work/feishu-preview.csv
 python -m unittest discover -s tests -v
 ```
 
-预期结果：4 条 fixture 中 2 条通过指标门禁、1 条进入 `local_review`、1 条排除；同时生成二创简报和可导入飞书的 UTF-8 CSV 预览。
+预期结果：4 条 fixture 中 2 条通过指标门禁、1 条进入 `local_review`、1 条排除；同时生成二创简报、交给 `$lvsea-writing` 的接力包和可导入飞书的 UTF-8 CSV 预览。
 
 ## 输入字段
 
@@ -104,12 +116,14 @@ python -m unittest discover -s tests -v
 - 不把第三方 API Key、Cookie、私有附件、账号密码或本机绝对路径写入仓库。
 - `local_review` 和 `unknown` 记录默认不进入远端；源记录、评论原文和图片的版权/隐私由使用者负责核验。
 - “二创”不是洗稿。每条成稿应保留来源依据，同时新增观点、场景、结构或数据；发布前需要人工审核。
+- 接力包不是成稿。`$lvsea-writing` 必须重新确认事实、读者、结构和作者声音，最后一步才做去 AI 味；统计检测不能替代人工判断。
 
 ## 开发与验证
 
 ```powershell
 python scripts/check_package.py
 python -m unittest discover -s tests -v
+python scripts/build_writing_handoff.py tests/fixtures/demo-materials.json --output work/lvsea-writing-handoff.md --count 2
 ```
 
 公开发布前由 `lvsea-zao-skill` 运行结构、触发、Skill IR、上下文、秘密扫描、功能分支、PR、Release、发现和干净安装门禁。详见 `reports/`。

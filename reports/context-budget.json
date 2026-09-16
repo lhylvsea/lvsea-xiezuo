@@ -1,24 +1,29 @@
 {
   "ok": true,
   "status": "pass",
-  "reason": "root SKILL.md is 6378 bytes within production budget",
+  "reason": "root SKILL.md is 7633 bytes within production budget",
   "tier": "production",
-  "root_skill_bytes": 6378,
+  "root_skill_bytes": 7633,
   "root_budget_bytes": {
     "root_warn": 14000,
     "root_block": 20000
   },
   "resource_bytes": {
-    "references": 5194,
-    "scripts": 22578,
-    "evals": 2955,
-    "reports": 25055
+    "references": 8858,
+    "scripts": 27966,
+    "evals": 3158,
+    "reports": 28962
   },
-  "total_measured_bytes": 62160,
+  "total_measured_bytes": 76577,
   "files": [
     {
       "path": "references/feishu-export.md",
       "bytes": 1073,
+      "on_demand": true
+    },
+    {
+      "path": "references/lvsea-writing-handoff.md",
+      "bytes": 3441,
       "on_demand": true
     },
     {
@@ -28,7 +33,7 @@
     },
     {
       "path": "references/writing-and-evidence.md",
-      "bytes": 1854,
+      "bytes": 2077,
       "on_demand": true
     },
     {
@@ -37,8 +42,13 @@
       "on_demand": false
     },
     {
+      "path": "scripts/build_writing_handoff.py",
+      "bytes": 5313,
+      "on_demand": false
+    },
+    {
       "path": "scripts/check_package.py",
-      "bytes": 3942,
+      "bytes": 4017,
       "on_demand": false
     },
     {
@@ -63,7 +73,7 @@
     },
     {
       "path": "evals/trigger_cases.json",
-      "bytes": 2955,
+      "bytes": 3158,
       "on_demand": false
     },
     {
@@ -73,12 +83,12 @@
     },
     {
       "path": "reports/context-budget.json",
-      "bytes": 2455,
+      "bytes": 2685,
       "on_demand": true
     },
     {
       "path": "reports/creation-handoff.md",
-      "bytes": 2638,
+      "bytes": 3174,
       "on_demand": true
     },
     {
@@ -93,17 +103,17 @@
     },
     {
       "path": "reports/prior-art-research.md",
-      "bytes": 3360,
+      "bytes": 5456,
       "on_demand": true
     },
     {
       "path": "reports/skill-ir.json",
-      "bytes": 6979,
+      "bytes": 7531,
       "on_demand": true
     },
     {
       "path": "reports/trigger-eval.json",
-      "bytes": 6306,
+      "bytes": 6799,
       "on_demand": true
     }
   ],
