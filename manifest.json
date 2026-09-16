@@ -1,20 +1,26 @@
 {
   "name": "lvsea-xiezuo",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "owner": "海洋哥 / lhylvsea",
-  "updated_at": "2026-08-25",
-  "review_due": "2026-11-25",
+  "updated_at": "2026-09-16",
+  "review_due": "2026-12-16",
   "status": "active",
   "maturity_tier": "governed",
   "lifecycle_stage": "library",
   "context_budget_tier": "production",
   "review_cadence": "quarterly",
-  "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703",
+  "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing",
+  "integration": {
+    "upstream_material_skill": "lvsea-xiezuo",
+    "downstream_writing_skill": "https://github.com/lhylvsea/lvsea-writing",
+    "late_humanizer_reference": "https://github.com/larashero3-dotcom/lieflat-less-ai-tone",
+    "handoff_script": "scripts/build_writing_handoff.py"
+  },
   "intent": {
     "job_to_be_done": "把小红书素材采集、互动门禁、评论分析、分类归档和证据驱动二创写作简报变成可复用 Skill。",
     "target_users": ["中文内容创作者", "制造业知识账号", "个人副业与电商运营者", "需要本地可复盘素材库的 Agent 使用者"],
     "inputs": ["keyword brief", "user-owned JSON/JSONL/CSV", "authorized provider output", "optional Feishu export target"],
-    "outputs": ["gated material dataset", "evidence cards", "rewrite brief", "Feishu-compatible CSV preview"],
+    "outputs": ["gated material dataset", "evidence cards", "rewrite brief", "lvsea-writing handoff package", "Feishu-compatible CSV preview"],
     "exclusions": ["one-off copy rewrite", "direct repost", "automatic XHS publishing", "unverified metrics", "unreviewed third-party scraping or API calls"]
   },
   "evidence": {

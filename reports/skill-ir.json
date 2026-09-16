@@ -1,13 +1,13 @@
 {
   "schema_version": "3.0.0-lvsea",
-  "generated_at": "2026-08-25",
+  "generated_at": "2026-09-16",
   "package": {
     "name": "lvsea-xiezuo",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "owner": "海洋哥 / lhylvsea",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
-    "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703"
+    "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing"
   },
   "intent": {
     "description": "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims.",
@@ -28,6 +28,7 @@
       "gated material dataset",
       "evidence cards",
       "rewrite brief",
+      "lvsea-writing handoff package",
       "Feishu-compatible CSV preview"
     ],
     "exclusions": [
@@ -44,7 +45,8 @@
       "把这批公开笔记整理成素材库，输出核心矛盾、高赞评论和 5 个带来源的选题。",
       "读取 JSON 导出，筛掉缺少指标的远端同步记录，再生成 30 个不同角度的写作简报。",
       "把素材字段导出成飞书多维表 CSV，local_review 先不要同步。",
-      "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。"
+      "做一个长期可复用的小红书素材雷达 Skill，要求有来源、门禁、复盘和二创流程。",
+      "已筛选出小红书素材，补齐来源依据，生成可交给 $lvsea-writing 的写作接力包，先不要直接写正文。"
     ],
     "should_not_trigger": [
       "只把这段话改成一篇小红书文案，不需要素材库和来源。",
@@ -69,6 +71,7 @@
       "`素材门禁结果`：总数、`eligible`、`local_review`、`excluded`，以及每条记录的理由；",
       "`证据卡`：来源、指标、原始观察、推断、开放问题；",
       "`二创简报`：候选标题方向、核心矛盾、目标读者、内容结构、来源依据、测试变量和风险；",
+      "`写作接力包`：仅在用户要继续写正文时生成，明确交给 `$lvsea-writing`，不包含自动成稿；",
       "`限制与下一步`：provider 是否真实运行、是否有人工复核、是否完成飞书同步，缺失时写 `missing_evidence`。"
     ],
     "failure_modes": []
@@ -76,11 +79,13 @@
   "resources": {
     "references": [
       "references/feishu-export.md",
+      "references/lvsea-writing-handoff.md",
       "references/material-schema.md",
       "references/writing-and-evidence.md"
     ],
     "scripts": [
       "scripts/build_rewrite_brief.py",
+      "scripts/build_writing_handoff.py",
       "scripts/check_package.py",
       "scripts/export_feishu_csv.py",
       "scripts/filter_materials.py",
@@ -118,7 +123,7 @@
     "maturity": "governed",
     "lifecycle_stage": "library",
     "review_cadence": "quarterly",
-    "review_due": "2026-11-25",
+    "review_due": "2026-12-16",
     "rollback_boundary": "feature branch and immutable semver release; local sync is recoverable"
   },
   "portability": {

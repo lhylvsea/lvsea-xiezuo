@@ -1,12 +1,13 @@
 interface:
   display_name: "Lvsea 小红书素材雷达与二创写作"
   short_description: "按来源和互动门禁整理小红书素材，提炼评论洞察并生成可审核二创简报"
-  default_prompt: "使用 $lvsea-xiezuo 作为小红书素材与二创写作入口。先锁定关键词、角度、排除项和目标数量，再按来源证据与互动门禁筛选素材，分离观察、推断和开放问题，生成带 source_basis 的二创简报；默认不发布、不直接同步飞书，provider 或人工证据缺失时明确写 missing_evidence。"
+  default_prompt: "使用 $lvsea-xiezuo 作为小红书素材与二创写作入口。先锁定关键词、角度、排除项和目标数量，再按来源证据与互动门禁筛选素材，分离观察、推断和开放问题，生成带 source_basis 的二创简报；如果用户要继续写正文，生成交给 $lvsea-writing 的接力包，不在本 Skill 内提前做最终去 AI 味；默认不发布、不直接同步飞书，provider 或人工证据缺失时明确写 missing_evidence。"
   examples:
     - "用关键词‘冷门生意’整理一批小红书素材，按默认门槛筛选并分析评论区。"
     - "读取我的 JSON 导出，提炼核心矛盾、评论观点和二创价值，输出 5 个写作简报。"
     - "把素材库导出成飞书多维表可导入的 CSV，local_review 记录不要同步。"
     - "基于已有爆款素材生成 30 个不同角度的选题，不要逐句改写，也不要自动发布。"
+    - "筛选小红书素材后，生成带来源依据的 lvsea-writing 接力包，先不要直接写正文。"
 compatibility:
   canonical_format: "agent-skills"
   adapter_targets:
@@ -50,4 +51,3 @@ gates:
     - "secret scan and no credential files"
     - "explicit provider and external-write boundaries"
     - "feature branch, PR, versioned Release and clean install"
-

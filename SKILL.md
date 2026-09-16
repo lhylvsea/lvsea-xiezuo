@@ -3,8 +3,8 @@ name: lvsea-xiezuo
 description: "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims."
 metadata:
   author: "海洋哥 / lhylvsea"
-  version: "0.1.1"
-  upstream_inspiration: "https://x.com/weiyux2021/status/2091828459630960703"
+  version: "0.1.2"
+  upstream_inspiration: "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing"
 ---
 
 # Lvsea 小红书素材雷达与二创写作
@@ -22,7 +22,8 @@ metadata:
 - 关键词/角度/排除项驱动的小红书素材采集或素材库建设；
 - 按互动指标筛选高讨论、低粉高赞或类似素材，并做内容复盘；
 - 需要提炼“核心矛盾、评论区主要观点、高赞评论、二创价值”；
-- 将素材整理为飞书多维表字段，或从素材批量生成可审核的二创写作简报。
+- 将素材整理为飞书多维表字段，或从素材批量生成可审核的二创写作简报；
+- 已完成素材筛选、希望继续写正文时，生成写作接力包交给 `$lvsea-writing`；不要让本 Skill 越过证据和简报直接批量产出最终正文。
 
 仅要求改写一篇文案、解释小红书概念、生成一次性标题、直接搬运原文或发布内容时不要触发。
 
@@ -56,16 +57,18 @@ reference_time: "可选，带时区的 ISO-8601 时间"
 3. **证据化分析**：对入选素材分别写出 `observed`、`inference`、`open_question`。提炼核心矛盾、评论区主要观点、高赞评论原文和二创价值；没有评论数据时写明缺口，不模拟“评论共识”。
 4. **分类与去重**：按关键词、内容分类和素材类型归档；同一来源只保留一个 canonical 记录。二创必须改变切入点、受众或表达结构，并记录 `source_basis`，不逐句改写或拼接多篇原文。
 5. **生成写作简报**：运行 `scripts/build_rewrite_brief.py` 输出可审核简报。每个候选只解决一个问题，标出事实依据、待核问题、拟测试变量和禁止方向；最终笔记由 Agent 基于简报创作，不把脚本输出冒充成已完成的 30 篇成稿。
-6. **导出/同步**：需要飞书时先运行 `scripts/export_feishu_csv.py` 做本地预览。只有用户明确授权并且字段、账号和目标表已经确认，才调用对应飞书连接器；`local_review`、缺来源或含敏感信息的记录不写入远端。
+6. **写作接力**：用户要求继续写正文时运行 `scripts/build_writing_handoff.py`，默认只传递 `eligible`；用户明确允许时才加入 `local_review`。接力包交给 `$lvsea-writing` 重新做任务契约、证据、结构、读者、声音和场景检查；最后去 AI 味属于下游最后编辑阶段，不在这里提前执行。字段映射和来源边界见 [写作接力说明](references/lvsea-writing-handoff.md)。
+7. **导出/同步**：需要飞书时先运行 `scripts/export_feishu_csv.py` 做本地预览。只有用户明确授权并且字段、账号和目标表已经确认，才调用对应飞书连接器；`local_review`、缺来源或含敏感信息的记录不写入远端。
 
 ## 输出契约
 
-输出必须分为四层：
+输出必须分为五层：
 
 1. `素材门禁结果`：总数、`eligible`、`local_review`、`excluded`，以及每条记录的理由；
 2. `证据卡`：来源、指标、原始观察、推断、开放问题；
 3. `二创简报`：候选标题方向、核心矛盾、目标读者、内容结构、来源依据、测试变量和风险；
-4. `限制与下一步`：provider 是否真实运行、是否有人工复核、是否完成飞书同步，缺失时写 `missing_evidence`。
+4. `写作接力包`：仅在用户要继续写正文时生成，明确交给 `$lvsea-writing`，不包含自动成稿；
+5. `限制与下一步`：provider 是否真实运行、是否有人工复核、是否完成飞书同步，缺失时写 `missing_evidence`。
 
 不要使用“保证爆款”“提升 X%”“已自动采集”等超出来源和实跑证据的表述。
 
@@ -76,6 +79,7 @@ reference_time: "可选，带时区的 ISO-8601 时间"
 - 不执行未审查的第三方安装器、爬虫、hook 或发布脚本；平台 provider 缺失时降级到本地导入。
 - 不自动点赞、评论、发帖或批量同步；所有外部写入都必须是用户当轮明确授权的动作。
 - 原文引用只用于证据卡，二创输出必须有新增观点、结构或场景；不把“改几个词”当作原创。
+- `lieflat-less-ai-tone` 只作为下游最后编辑阶段的公开研究参考；统计特征是风险信号，不是通用阈值，也不能替代事实核验和作者终审。
 
 ## 本地可运行验证
 
@@ -85,6 +89,7 @@ reference_time: "可选，带时区的 ISO-8601 时间"
 python scripts/validate_materials.py tests/fixtures/demo-materials.json
 python scripts/filter_materials.py tests/fixtures/demo-materials.json --reference-time 2026-08-25T12:00:00+08:00 --output work/gated.json
 python scripts/build_rewrite_brief.py work/gated.json --output work/rewrite-brief.md --count 3
+python scripts/build_writing_handoff.py work/gated.json --output work/lvsea-writing-handoff.md --count 3
 python scripts/export_feishu_csv.py work/gated.json --output work/feishu-preview.csv
 python -m unittest discover -s tests -v
 ```
