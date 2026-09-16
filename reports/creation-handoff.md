@@ -1,12 +1,16 @@
 # Creation Handoff
 
+Version: `0.1.3`
+
+This package is a downstream Xiaohongshu material specialist. The primary user entry for combined writing is `$lvsea-writing`; this package is called directly only for material radar, evidence cards, rewrite briefs, and writing handoffs.
+
 ## Result
 
-- Skill: `lvsea-xiezuo` v0.1.2
+- Skill: `lvsea-xiezuo` v0.1.3
 - Owner: 海洋哥 / `lhylvsea`
 - Job: build a source-backed Xiaohongshu material radar and derivative-writing brief workflow
 - Local source: `work/lvsea-xiezuo`
-- Publication: public GitHub repository; v0.1.2 adds the evidence-preserving handoff to `lvsea-writing` and records the late Humanizer research boundary
+- Publication: public GitHub repository; v0.1.3 makes `lvsea-writing` the single user-facing entry and narrows this package to the evidence-preserving material handoff
 
 ## Reference skills studied
 

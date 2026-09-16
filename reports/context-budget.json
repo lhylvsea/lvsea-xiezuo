@@ -1,20 +1,20 @@
 {
   "ok": true,
   "status": "pass",
-  "reason": "root SKILL.md is 7633 bytes within production budget",
+  "reason": "root SKILL.md is 8235 bytes within production budget",
   "tier": "production",
-  "root_skill_bytes": 7633,
+  "root_skill_bytes": 8235,
   "root_budget_bytes": {
     "root_warn": 14000,
     "root_block": 20000
   },
   "resource_bytes": {
-    "references": 8858,
-    "scripts": 27966,
-    "evals": 3158,
-    "reports": 28962
+    "references": 9079,
+    "scripts": 28068,
+    "evals": 3538,
+    "reports": 31115
   },
-  "total_measured_bytes": 76577,
+  "total_measured_bytes": 80035,
   "files": [
     {
       "path": "references/feishu-export.md",
@@ -23,7 +23,7 @@
     },
     {
       "path": "references/lvsea-writing-handoff.md",
-      "bytes": 3441,
+      "bytes": 3625,
       "on_demand": true
     },
     {
@@ -33,7 +33,7 @@
     },
     {
       "path": "references/writing-and-evidence.md",
-      "bytes": 2077,
+      "bytes": 2114,
       "on_demand": true
     },
     {
@@ -43,7 +43,7 @@
     },
     {
       "path": "scripts/build_writing_handoff.py",
-      "bytes": 5313,
+      "bytes": 5415,
       "on_demand": false
     },
     {
@@ -73,7 +73,7 @@
     },
     {
       "path": "evals/trigger_cases.json",
-      "bytes": 3158,
+      "bytes": 3538,
       "on_demand": false
     },
     {
@@ -88,7 +88,7 @@
     },
     {
       "path": "reports/creation-handoff.md",
-      "bytes": 3174,
+      "bytes": 3816,
       "on_demand": true
     },
     {
@@ -103,17 +103,17 @@
     },
     {
       "path": "reports/prior-art-research.md",
-      "bytes": 5456,
+      "bytes": 5941,
       "on_demand": true
     },
     {
       "path": "reports/skill-ir.json",
-      "bytes": 7531,
+      "bytes": 7753,
       "on_demand": true
     },
     {
       "path": "reports/trigger-eval.json",
-      "bytes": 6799,
+      "bytes": 7603,
       "on_demand": true
     }
   ],

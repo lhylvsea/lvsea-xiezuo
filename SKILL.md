@@ -1,15 +1,27 @@
 ---
 name: lvsea-xiezuo
-description: "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims."
+description: "中文触发：仅当用户要做小红书素材库/素材雷达、关键词与角度采集、互动指标筛选、评论分析、飞书整理或来源驱动的二创写作简报时调用。作为 $lvsea-writing 的素材前置专家，生成可审阅的 source-backed handoff；不要用于普通写作、通用改稿、独立最终去 AI 味、单次标题或自动发布。Use for evidence-led Xiaohongshu material radar and reviewable writing handoffs. The primary entry for combined writing is $lvsea-writing."
 metadata:
   author: "海洋哥 / lhylvsea"
-  version: "0.1.2"
+  version: "0.1.3"
   upstream_inspiration: "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing"
 ---
 
-# Lvsea 小红书素材雷达与二创写作
+# Lvsea 小红书素材雷达专家
 
-把“找素材、看数据、读评论、提炼角度、写新稿”变成一个可追溯的内容工作流。默认只读，不代替用户登录、绕过平台限制、复制原文或直接发布。
+把“找素材、看数据、读评论、提炼角度、交接给写作 Skill”变成一个可追溯的内容前置工作流。默认只读，不代替用户登录、绕过平台限制、复制原文或直接发布。
+
+## 单入口关系
+
+用户面对多 Skill 写作任务时，默认只调用 `$lvsea-writing`。本 Skill 是它按需调用的小红书素材专家：
+
+```text
+$lvsea-writing -> $lvsea-xiezuo: 小红书素材、指标、评论和来源证据
+$lvsea-xiezuo -> $lvsea-writing: 写作接力包
+$lvsea-writing -> $lieflat-less-ai-tone: 完整初稿后的最后一轮定点编辑
+```
+
+用户也可以显式调用 `$lvsea-xiezuo`，但仅用于素材雷达、证据卡、二创简报和写作接力；通用写作、完整文章改稿和最终去 AI 味应回到 `$lvsea-writing`。
 
 ## 中文使用说明
 
@@ -25,7 +37,7 @@ metadata:
 - 将素材整理为飞书多维表字段，或从素材批量生成可审核的二创写作简报；
 - 已完成素材筛选、希望继续写正文时，生成写作接力包交给 `$lvsea-writing`；不要让本 Skill 越过证据和简报直接批量产出最终正文。
 
-仅要求改写一篇文案、解释小红书概念、生成一次性标题、直接搬运原文或发布内容时不要触发。
+仅要求通用写作、改写一篇完整文章、做最终去 AI 味、解释小红书概念、生成一次性标题、直接搬运原文或发布内容时不要触发。
 
 ## 应用场景
 

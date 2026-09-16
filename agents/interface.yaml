@@ -1,7 +1,7 @@
 interface:
-  display_name: "Lvsea 小红书素材雷达与二创写作"
-  short_description: "按来源和互动门禁整理小红书素材，提炼评论洞察并生成可审核二创简报"
-  default_prompt: "使用 $lvsea-xiezuo 作为小红书素材与二创写作入口。先锁定关键词、角度、排除项和目标数量，再按来源证据与互动门禁筛选素材，分离观察、推断和开放问题，生成带 source_basis 的二创简报；如果用户要继续写正文，生成交给 $lvsea-writing 的接力包，不在本 Skill 内提前做最终去 AI 味；默认不发布、不直接同步飞书，provider 或人工证据缺失时明确写 missing_evidence。"
+  display_name: "Lvsea 小红书素材雷达专家"
+  short_description: "为 $lvsea-writing 提供小红书素材、证据门禁、评论洞察和可审核写作接力包"
+  default_prompt: "仅在需要小红书素材研究时使用 $lvsea-xiezuo；组合写作默认由 $lvsea-writing 进入并按需路由到这里。先锁定关键词、角度、排除项和目标数量，再按来源证据与互动门禁筛选素材，分离观察、推断和开放问题，生成带 source_basis 的二创简报或写作接力包；不负责通用写作、完整文章改稿或最终去 AI 味；默认不发布、不直接同步飞书，provider 或人工证据缺失时明确写 missing_evidence。"
   examples:
     - "用关键词‘冷门生意’整理一批小红书素材，按默认门槛筛选并分析评论区。"
     - "读取我的 JSON 导出，提炼核心矛盾、评论观点和二创价值，输出 5 个写作简报。"
