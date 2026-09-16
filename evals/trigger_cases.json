@@ -30,7 +30,9 @@
     {"text": "只把这段话改成一篇小红书文案，不需要素材库和来源。", "family": "one-off-rewrite", "min_concept_matches": 3},
     {"text": "给我一个小红书标题，今天用一次就行。", "family": "one-off-title", "min_concept_matches": 3},
     {"text": "解释一下什么是小红书，不要分析任何素材。", "family": "concept-explanation", "min_concept_matches": 3},
-    {"text": "把这篇别人的笔记原样搬到我的账号，直接发出去。", "family": "direct-repost", "min_concept_matches": 3}
+    {"text": "把这篇别人的笔记原样搬到我的账号，直接发出去。", "family": "direct-repost", "min_concept_matches": 3},
+    {"text": "把这篇完整文章最后去掉 AI 味，保留事实，不需要小红书素材研究。", "family": "final-humanizer-only", "min_concept_matches": 3},
+    {"text": "从制造业资料写一篇长文，先做结构和证据复核，不需要小红书素材库。", "family": "generic-writing", "min_concept_matches": 3}
   ],
   "near_neighbor": [
     {"text": "分析我自己账号最近 10 篇笔记的数据，但不需要采集外部素材或生成二创。", "family": "owned-account-analysis", "min_concept_matches": 3},

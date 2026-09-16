@@ -1,6 +1,6 @@
 {
   "name": "lvsea-xiezuo",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "owner": "海洋哥 / lhylvsea",
   "updated_at": "2026-09-16",
   "review_due": "2026-12-16",
@@ -12,6 +12,9 @@
   "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing",
   "integration": {
     "upstream_material_skill": "lvsea-xiezuo",
+    "primary_entry": "https://github.com/lhylvsea/lvsea-writing",
+    "specialist_role": "xiaohongshu-material-radar-and-writing-handoff",
+    "invocation_policy": "direct for material research; routed downstream for combined writing; never the general writing entry",
     "downstream_writing_skill": "https://github.com/lhylvsea/lvsea-writing",
     "late_humanizer_reference": "https://github.com/larashero3-dotcom/lieflat-less-ai-tone",
     "handoff_script": "scripts/build_writing_handoff.py"
@@ -21,7 +24,7 @@
     "target_users": ["中文内容创作者", "制造业知识账号", "个人副业与电商运营者", "需要本地可复盘素材库的 Agent 使用者"],
     "inputs": ["keyword brief", "user-owned JSON/JSONL/CSV", "authorized provider output", "optional Feishu export target"],
     "outputs": ["gated material dataset", "evidence cards", "rewrite brief", "lvsea-writing handoff package", "Feishu-compatible CSV preview"],
-    "exclusions": ["one-off copy rewrite", "direct repost", "automatic XHS publishing", "unverified metrics", "unreviewed third-party scraping or API calls"]
+    "exclusions": ["one-off copy rewrite", "generic writing", "final Humanizer editing", "direct repost", "automatic XHS publishing", "unverified metrics", "unreviewed third-party scraping or API calls"]
   },
   "evidence": {
     "article_source": "https://x.com/weiyux2021/status/2091828459630960703",
@@ -56,6 +59,7 @@
     "secret_scan",
     "rollback_boundary",
     "evidence_bound_public_claims",
+    "single_entry_specialist_route",
     "feature_branch_only_publication",
     "pull_request_and_release",
     "npx_discovery_and_clean_install"

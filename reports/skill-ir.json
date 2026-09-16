@@ -3,14 +3,14 @@
   "generated_at": "2026-09-16",
   "package": {
     "name": "lvsea-xiezuo",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "owner": "海洋哥 / lhylvsea",
     "maturity_tier": "governed",
     "lifecycle_stage": "library",
     "upstream_inspiration": "https://x.com/weiyux2021/status/2091828459630960703; https://x.com/Zhiyu333/status/2099746344466579566; https://github.com/larashero3-dotcom/lieflat-less-ai-tone; https://github.com/lhylvsea/lvsea-writing"
   },
   "intent": {
-    "description": "中文触发：当用户要建立小红书素材库、用关键词和角度采集选题、筛选高互动素材、分析核心矛盾和评论区、把素材整理成飞书多维表或批量二创写作简报时调用。也用于把公开或用户自有的小红书素材变成有来源、有证据状态、可复盘的写作资产。Use for evidence-led Xiaohongshu material radar, source analysis, content repurposing, and reviewable writing briefs. Do not use for a one-off copy rewrite, direct repost, automatic publishing, or unsupported performance claims.",
+    "description": "中文触发：仅当用户要做小红书素材库/素材雷达、关键词与角度采集、互动指标筛选、评论分析、飞书整理或来源驱动的二创写作简报时调用。作为 $lvsea-writing 的素材前置专家，生成可审阅的 source-backed handoff；不要用于普通写作、通用改稿、独立最终去 AI 味、单次标题或自动发布。Use for evidence-led Xiaohongshu material radar and reviewable writing handoffs. The primary entry for combined writing is $lvsea-writing.",
     "job_to_be_done": "把小红书素材采集、互动门禁、评论分析、分类归档和证据驱动二创写作简报变成可复用 Skill。",
     "target_users": [
       "中文内容创作者",
@@ -33,6 +33,8 @@
     ],
     "exclusions": [
       "one-off copy rewrite",
+      "generic writing",
+      "final Humanizer editing",
       "direct repost",
       "automatic XHS publishing",
       "unverified metrics",
@@ -52,7 +54,9 @@
       "只把这段话改成一篇小红书文案，不需要素材库和来源。",
       "给我一个小红书标题，今天用一次就行。",
       "解释一下什么是小红书，不要分析任何素材。",
-      "把这篇别人的笔记原样搬到我的账号，直接发出去。"
+      "把这篇别人的笔记原样搬到我的账号，直接发出去。",
+      "把这篇完整文章最后去掉 AI 味，保留事实，不需要小红书素材研究。",
+      "从制造业资料写一篇长文，先做结构和证据复核，不需要小红书素材库。"
     ],
     "near_neighbor": [
       "分析我自己账号最近 10 篇笔记的数据，但不需要采集外部素材或生成二创。",

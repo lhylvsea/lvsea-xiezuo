@@ -1,6 +1,6 @@
 # lvsea-xiezuo
 
-一个中文优先、证据驱动的小红书素材雷达与二创写作 Skill。
+一个中文优先、证据驱动的小红书素材雷达专家 Skill，也是 `$lvsea-writing` 的可选前置研究节点。
 
 它把关键词采集、互动指标筛选、核心矛盾分析、评论区复盘、素材分类、二创简报和飞书多维表导出串成一条可检查的流程。默认只读，平台采集与远端写入需要用户已有的授权和连接器。
 
@@ -10,13 +10,16 @@
 
 这里把截图中可复核的字段和门槛固化为规则，但没有把案例作者所述的数量或效率当成已验证效果。真实小红书 provider、飞书 API、账号权限、人工质量评审在本版本均标为 `missing_evidence`。
 
-## 与 lvsea-writing 的关系
+## 与 lvsea-writing 的关系：单入口路由
 
-本 Skill 与 [lvsea-writing](https://github.com/lhylvsea/lvsea-writing) 是上下游关系，不是两个重复的通用写作 Skill：
+本 Skill 与 [lvsea-writing](https://github.com/lhylvsea/lvsea-writing) 是上下游关系，不是两个重复的通用写作 Skill。组合任务默认从 `$lvsea-writing` 进入：
 
+- `lvsea-writing` 是用户默认入口，负责判断是否需要小红书素材前置、通用写作流程和最终编辑；
 - `lvsea-xiezuo` 负责小红书素材的来源、指标门禁、评论证据、去重和二创方向，停止在“可审阅的写作输入”；
 - `lvsea-writing` 负责通用写作的任务契约、研究复核、主判断、结构、读者、作者声音、场景格式、初稿、终稿，以及最后一步去 AI 味；
 - 需要继续写正文时，先运行 `scripts/build_writing_handoff.py` 生成接力包，再交给 `$lvsea-writing`。不要把素材门禁和最终 Humanizer 塞进同一个入口。
+
+如果用户只说“写一篇文章”“改稿”或“最后去 AI 味”，不要直接触发本 Skill；只有明确需要小红书素材研究、指标筛选、评论复盘或素材到写作的接力时，才显式调用 `$lvsea-xiezuo`。
 
 本次接力设计参考了 [Zhiyu333 的公开文章](https://x.com/Zhiyu333/status/2099746344466579566) 指向的 [lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone)。它只作为最后编辑阶段的研究参考：保留白名单式定点修改、信息守恒和样本审计；不复制其完整 Skill、研究数据或把报告中的统计特征当成普适阈值。详细字段映射见 [references/lvsea-writing-handoff.md](references/lvsea-writing-handoff.md)。
 
@@ -28,7 +31,7 @@
 npx skills add lhylvsea/lvsea-xiezuo --skill lvsea-xiezuo --yes
 ```
 
-安装后在新任务中使用：
+安装后在新任务中使用。普通写作请调用 `$lvsea-writing`；只有素材研究或素材接力才调用本 Skill：
 
 ```text
 使用 $lvsea-xiezuo：读取我的素材导出文件，按默认互动门槛筛选，输出 5 个带来源依据的二创简报；先不要同步飞书。

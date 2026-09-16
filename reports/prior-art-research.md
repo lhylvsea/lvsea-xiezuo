@@ -1,5 +1,9 @@
 # Prior-Art Research
 
+## Single-entry routing decision
+
+The current package is intentionally kept as the Xiaohongshu-material specialist rather than a second general writing entry. `$lvsea-writing` is the primary user-facing router; `lvsea-xiezuo` is invoked only when the task needs keyword/angle collection, interaction gates, comment evidence, Feishu shaping, or a source-backed writing handoff. Final drafting and late Humanizer editing remain downstream.
+
 ## Search method
 
 On 2026-08-25, `find-skills` was read first and the Skills CLI was used for three read-only queries:

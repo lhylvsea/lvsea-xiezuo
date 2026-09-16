@@ -8,8 +8,8 @@
   ],
   "missing_description_concepts": [],
   "summary": {
-    "total": 14,
-    "passed": 14,
+    "total": 16,
+    "passed": 16,
     "false_positive": 0,
     "false_negative": 0,
     "pass_rate": 1.0
@@ -20,8 +20,8 @@
       "passed": 6
     },
     "should_not_trigger": {
-      "total": 4,
-      "passed": 4
+      "total": 6,
+      "passed": 6
     },
     "near_neighbor": {
       "total": 2,
@@ -167,6 +167,30 @@
         "passed": true,
         "score": 0.0,
         "matched_concepts": [],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "把这篇完整文章最后去掉 AI 味，保留事实，不需要小红书素材研究。",
+        "family": "final-humanizer-only",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "xhs_material"
+        ],
+        "negative_pattern": null
+      },
+      {
+        "prompt": "从制造业资料写一篇长文，先做结构和证据复核，不需要小红书素材库。",
+        "family": "generic-writing",
+        "expected_trigger": false,
+        "predicted_trigger": false,
+        "passed": true,
+        "score": 0.333,
+        "matched_concepts": [
+          "xhs_material"
+        ],
         "negative_pattern": null
       }
     ],
